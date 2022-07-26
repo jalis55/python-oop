@@ -8,16 +8,27 @@ class Items:
         assert price >=0,"Price can not be negative"
         assert qty >=0,"Quantity can not be negative"
 
-        self.name=name
+        self.__name=name
         self.price=price 
         self.qty=qty
         Items.all_items.append(self)
+
+    #encapsulation..read-only name attribute
+    @property
+    #get name
+    def name(self):
+        return self.__name
+    #set name
+    @name.setter
+    def name(self,value):
+        self.__name=value
 
     def get_total_price(self):
         return self.price * self.qty
     
     def apply_discount(self):
         self.price=self.price * self.pay_rate
+
     @classmethod
     def csv_data_reader(cls):
         with open('items.csv','r') as f:
@@ -35,6 +46,10 @@ class Items:
 
 
 
-Items.csv_data_reader()
+#encapsulation
 
-print(Items.all_items)
+items1=Items("Iphone",800,3)
+print(items1.name)
+items1.name='IphoneX'
+
+print(items1.name)
