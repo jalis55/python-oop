@@ -1,6 +1,3 @@
-from cgi import print_exception
-from unicodedata import name
-
 
 class Items:
     def __init__(self,name,price,qty=0) -> None:
